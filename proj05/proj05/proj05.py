@@ -1,9 +1,15 @@
-# Name:Arianna
-# Date:6/21/17
+# Name:
+# Date:
 
 # proj05: functions and lists
 
 # Part I
+
+
+
+
+
+
 
 def divisors(num):
 
@@ -19,11 +25,9 @@ def divisors(num):
     return list
 
 
-#Take a number and returns all divisors of the number, ordered least to greatest
-#param num: int
-#:return: list (int)
 
-#return 0
+
+
 
 
 
@@ -44,41 +48,20 @@ def prime(num):
 
 
 
+# Part II
 
 
 
 
 
-def intersection (lst1,list2):
+def intersection(lst1, lst2):
 
-    lst1=[]
-    lst2=[]
-    for intersection in range (1, num+1): list
+    answer_list = []
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    for item in lst1:
+        if item in lst2:
+                answer_list.append(item)
+    return answer_list
 
 
 
@@ -92,15 +75,42 @@ def intersection (lst1,list2):
 
 # Part III
 
-#def find_ab(side1, side2, side3):
 
-    #takes three side lengths an returns two smallest in a list
-    #:param side2: int or float
-    #:param side3: int or float
-    #:return: list of 2 ints or floats
-#     """
-#     return [0, 0]
-#
+
+
+
+
+
+
+
+
+
+def find_ab(side1, side2, side3):
+
+    list1=side1
+    list2=side2
+    list3=side3
+
+
+
+
+
+
+
+
+
+
+
+    #square(side1)#def find_ab(side1, side2, side3):
+    #     """
+    # # Takes three side lengths and returns two smallest in a list
+    # # :param side1: int or float
+    # # :param side2: int or float
+    # # :param side3: int or float
+    # # :return: list of 2 ints or floats
+    # # """
+    # return [0, 0]
+
 # def find_c(side1, side2, side3):
 #     """
 #     Takes three side lengths an returns the largest
@@ -138,12 +148,12 @@ def intersection (lst1,list2):
 #     :return: bool
 #     """
 #     return False
-#
+
 # TESTS
 # Feel free to add your own tests as needed!
 
-print("Divisors Tests")
-#Test 1
+print ("Divisors Tests")
+# Test 1
 if divisors(1) == [1]:
     print("Test 1: PASS")
 else:
@@ -155,7 +165,7 @@ if divisors(8) == [1,2,4,8]:
 else:
     print("Test 2: FAIL")
 
- #Test 3
+# Test 3
 if divisors(9) == [1,3,9]:
     print("Test 3: PASS\n")
 else:
@@ -173,13 +183,13 @@ if prime(7):
     print("Test 5: PASS\n")
 else:
     print("Test 5: FAIL\n")
-#
-# L1 = []
-# L2 = [3, 4]
-# L3 = [3, "a"]
-# L4 = [5, "b", 10, 7, "a"]
-# L5 = [5, 7, 11]
-#
+
+L1 = []
+L2 = [3, 4]
+L3 = [3, "a"]
+L4 = [5, "b", 10, 7, "a"]
+L5 = [5, 7, 11]
+
 print("Intersection Tests")
 # Test 6
 if intersection(L1, L2) == []:
@@ -188,6 +198,7 @@ else:
     print("Test 6: FAIL")
 
 # Test 7
+
 if intersection(L2, L3) == [3]:
     print("Test 7: PASS")
 else:
@@ -210,16 +221,16 @@ if intersection(L4, L5) == [5, 7]:
     print("Test 10: PASS\n")
 else:
     print("Test 10: FAIL\n")
-#
-# print("Is_Right Tests")
-# # Test 11
-# if is_right(5, 3, 4):
-#     print("Test 11: PASS")
-# else:
-#     print("Test 11: FAIL")
-#
-# # Test 12
-# if is_right(9, 3, 4):
-#     print("Test 12: FAIL")
-# else:
-#     print("Test 12: PASS")
+
+print("Is_Right Tests")
+# Test 11
+if is_right(5, 3, 4):
+    print("Test 11: PASS")
+else:
+    print("Test 11: FAIL")
+
+# Test 12
+if is_right(9, 3, 4):
+    print("Test 12: FAIL")
+else:
+    print("Test 12: PASS")
