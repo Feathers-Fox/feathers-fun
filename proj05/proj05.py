@@ -5,82 +5,136 @@
 
 # Part I
 
+
+
+
+
+
+
 def divisors(num):
-    """
-    Takes a number and returns all divisors of the number, ordered least to greatest
-    :param num: int
-    :return: list (int)
-    """
-    return 0
+
+
+
+    list=[]
+
+    for number in range(1,num+1):
+
+        if num%number==0:
+            list.append(number)
+
+    return list
+
+
+
+
+
+
+
+
 
 def prime(num):
-    """
-    Takes a number and returns True if the number is prime, otherwise False
-    :param num: int
-    :return: bool
-    """
-    return False
+
+       divisorlist=divisors(num)
+       length=len(divisorlist)
+       if length==2:
+           return True
+
+
+
+
+
+
+
+
+
 
 # Part II
 
-def intersection(lst1, lst2):
-    """
-    Takes two lists and returns a list of the elements in common between the lists
-    :param lst1: list, any type
-    :param lst2: list, any type
-    :return: list, any type
-    """
-    return ["test"]
+
+
+
+
+def intersection (lst1,lst2):
+
+    lst3=[]
+
+    for number in range (1,len(lst1)+1):
+        for number in range (1,len(lst2)+1):
+            lst3.append(number)
+        if lst1[number] ==lst2[number]:
+
+
+            print lst3
+
+
+    #     x=non-matching_numbers
+    #     lst1.append(intersection)
+    #     lst2.append(intersection)
+    #
+    #
+    #
+    # if lst1==lst2:
+    #
+    #     return lst1 and list2
+
+
+
+
 
 # Part III
 
-def find_ab(side1, side2, side3):
-    """
-    Takes three side lengths an returns two smallest in a list
-    :param side1: int or float
-    :param side2: int or float
-    :param side3: int or float
-    :return: list of 2 ints or floats
-    """
-    return [0, 0]
 
-def find_c(side1, side2, side3):
-    """
-    Takes three side lengths an returns the largest
-    :param side1: int or float
-    :param side2: int or float
-    :param side3: int or float
-    :return: int or float
-    """
-    return 0
 
-def square(side):
-    """
-    Takes a side length and returns the side length squared
-    :param side: int or float
-    :return: int or float
-    """
-    return 0
 
-def pythagorean(a,b,c):
-    """
-    Takes three side lengths and returns true if a^2 + b^2 = c^2, otherwise false
-    :param a: int or float
-    :param b: int or float
-    :param c: int or float
-    :return: bool
-    """
-    return False
 
-def is_right(side1, side2, side3):
-    """
-    Takes three side lengths and returns true if triangle is right
-    :param side1: int or float
-    :param side2: int or float
-    :param side3: int or float
-    :return: bool
-    """
-    return False
+
+    #square(side1)#def find_ab(side1, side2, side3):
+    #     """
+    # # Takes three side lengths and returns two smallest in a list
+    # # :param side1: int or float
+    # # :param side2: int or float
+    # # :param side3: int or float
+    # # :return: list of 2 ints or floats
+    # # """
+    # return [0, 0]
+
+# def find_c(side1, side2, side3):
+#     """
+#     Takes three side lengths an returns the largest
+#     :param side1: int or float
+#     :param side2: int or float
+#     :param side3: int or float
+#     :return: int or float
+#     """
+#     return 0
+#
+# def square(side):
+#     """
+#     Takes a side length and returns the side length squared
+#     :param side: int or float
+#     :return: int or float
+#     """
+#     return 0
+#
+# def pythagorean(a,b,c):
+#     """
+#     Takes three side lengths and returns true if a^2 + b^2 = c^2, otherwise false
+#     :param a: int or float
+#     :param b: int or float
+#     :param c: int or float
+#     :return: bool
+#     """
+#     return False
+#
+# def is_right(side1, side2, side3):
+#     """
+#     Takes three side lengths and returns true if triangle is right
+#     :param side1: int or float
+#     :param side2: int or float
+#     :param side3: int or float
+#     :return: bool
+#     """
+#     return False
 
 # TESTS
 # Feel free to add your own tests as needed!
@@ -131,6 +185,7 @@ else:
     print("Test 6: FAIL")
 
 # Test 7
+
 if intersection(L2, L3) == [3]:
     print("Test 7: PASS")
 else:
