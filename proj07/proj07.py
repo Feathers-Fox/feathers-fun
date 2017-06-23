@@ -77,6 +77,22 @@ def get_word_score(word, n):
     returns: int >= 0
     """
     # TO DO...
+
+
+    for letters in word:
+        
+
+    if n == len(word):
+        points = points + 50
+
+
+
+
+        #if letters in SCRABBLE_LETTER_VALUES:
+            #print word
+
+
+
     
 #
 # Make sure you understand how this function works and what it does!
