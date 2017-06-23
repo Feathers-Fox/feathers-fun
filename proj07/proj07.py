@@ -78,18 +78,42 @@ def get_word_score(word, n):
     """
     # TO DO...
 
+    x = 0
+    points = 0
+    list = []
 
-    for letters in word:
-        
-
+    for var in word:
+        list.append(SCRABBLE_LETTER_VALUES[var])
+    for var in word:
+        points = points + list[x]
+        x = x + 1
+    points = points * len(word)
     if n == len(word):
         points = points + 50
+    print "the points for this word is ", points
+    return points
+
+
+
+answer = get_word_score("matthew", HAND_SIZE)
+print answer
 
 
 
 
-        #if letters in SCRABBLE_LETTER_VALUES:
-            #print word
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -108,7 +132,15 @@ def display_hand(hand):
     The order of the letters is unimportant.
 
     hand: dictionary (string -> int)
+
+
     """
+
+
+
+
+
+
     for letter in hand.keys():
         for j in range(hand[letter]):
              print letter,              # print all on the same line
@@ -162,6 +194,39 @@ def update_hand(hand, word):
     returns: dictionary (string -> int)
     """
     # TO DO ...
+
+    new_hand = hand.copy()
+
+    for var in word:
+        if word[x] == hand
+
+
+
+    return new_hand
+
+
+
+
+
+
+
+
+
+
+
+ # for letters in hand (1,n):
+ #    if hand <n:
+ #        print hand
+ #    if letters in hand:
+ #        hand.remove(letters)
+ #
+ #    if:
+ #        len(hand)= len(word)
+ #        add (letters)
+
+
+
+
 
 #
 # Problem #3: Test word validity
