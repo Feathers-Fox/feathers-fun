@@ -9,7 +9,7 @@ import string
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
 HAND_SIZE = 7
-
+score = 0
 SCRABBLE_LETTER_VALUES = {
     'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1, 'j': 8, 'k':
         5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1, 's': 1, 't': 1, 'u':
@@ -95,8 +95,6 @@ def get_word_score(word, n):
 
 
 
-answer = get_word_score("matthew", HAND_SIZE)
-print answer
 
 
 
@@ -195,14 +193,10 @@ def update_hand(hand, word):
     """
     # TO DO ...
 
-    new_hand = hand.copy()
 
-    for var in word:
-        if word[x] == hand
-
-
-
-    return new_hand
+    for key in word:
+       hand[key] = hand[key] - 1
+    return hand
 
 
 
@@ -210,19 +204,6 @@ def update_hand(hand, word):
 
 
 
-
-
-
-
- # for letters in hand (1,n):
- #    if hand <n:
- #        print hand
- #    if letters in hand:
- #        hand.remove(letters)
- #
- #    if:
- #        len(hand)= len(word)
- #        add (letters)
 
 
 
@@ -243,11 +224,46 @@ def is_valid_word(word, hand, word_list):
     """
     # TO DO...
 
+    handcopy = hand.copy()
+
+    if word not in word_list:
+        return False
+
+
+    for key in word:
+        handcopy[key] = handcopy.get(key,0) - 1
+        if handcopy[key] < 0:
+            return False
+
+    return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def calculate_handlen(hand):
     handlen = 0
     for v in hand.values():
         handlen += v
     return handlen
+
+
+
+
+
+
 
 #
 # Problem #4: Playing a hand
@@ -258,7 +274,7 @@ def play_hand(hand, word_list):
     Allows the user to play the given hand, as follows:
 
     * The hand is displayed.
-    
+
     * The user may input a word.
 
     * An invalid word is rejected, and a message is displayed asking
@@ -281,8 +297,27 @@ def play_hand(hand, word_list):
       
     """
     # TO DO ...
+    while hand > 0 or word != '.':
+        display_hand(hand)
 
-#
+        word=raw_input("Enter a word").lowercase
+
+        vw= is_valid_word(word, hand, word_list)
+        if vw==False:
+            print ("You shall not pass!")
+        else:
+            gws= get_word_score(word, HAND_SIZE)
+        score = score + gws
+    return hand, score
+
+
+
+
+
+
+
+
+
 # Problem #5: Playing a game
 # Make sure you understand how this code works!
 # 
@@ -302,6 +337,13 @@ def play_game(word_list):
     * If the user inputs anything else, ask them again.
     """
     # TO DO...
+question=raw_input("please enter n for a new hand, r for your last hand, ")
+
+
+
+
+
+
 
 #
 # Build data structures used for entire session and play game
