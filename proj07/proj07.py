@@ -308,7 +308,7 @@ def play_hand(hand, word_list):
         else:
             gws= get_word_score(word, HAND_SIZE)
         score = score + gws
-    return hand, score
+    return score
 
 
 
@@ -337,17 +337,41 @@ def play_game(word_list):
     * If the user inputs anything else, ask them again.
     """
     # TO DO...
-question=raw_input("please enter n for a new hand, r for your last hand, ")
+
+    x = 0
+    while x==0:
+
+
+        question=raw_input("please enter n for a new hand, r for your last hand, or enter e to exit the game").lowercase
 
 
 
+        if question == n:
+            deal_hand(HAND_SIZE)
+            display_hand(hand)
+            x=1
+        # elif question==r:
+        #     hand=last_hand
+        #     x=1
+        elif question==e:
+            exit()
+            x=1
+        else:
+            x=0
+            print 'Try again'
+
+    score = play_hand(hand, word_list)
 
 
 
-
-#
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
     word_list = load_words()
     play_game(word_list)
+
+
+
+
+load_words()
+playg = play_game(word_list)
