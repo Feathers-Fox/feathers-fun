@@ -90,7 +90,7 @@ def get_word_score(word, n):
     points = points * len(word)
     if n == len(word):
         points = points + 50
-    print "the points for this word is ", points
+    print "the reward for your greatness thus far is ",points
     return points
 
 
@@ -193,10 +193,11 @@ def update_hand(hand, word):
     """
     # TO DO ...
 
-
+    handcopy = hand.copy()
     for key in word:
-       hand[key] = hand[key] - 1
-    return hand
+       handcopy[key] = handcopy[key] - 1
+    return handcopy
+
 
 
 
@@ -297,18 +298,28 @@ def play_hand(hand, word_list):
       
     """
     # TO DO ...
-    while hand > 0 or word != '.':
+    gws = 0
+    score = 0
+
+
+
+    while calculate_handlen(hand) > 0:
         display_hand(hand)
 
-        word=raw_input("Enter a word").lowercase
+        word=raw_input(str("Enter a word, please! :3 I'm excited to see what you've thought of!")).lower()
 
         vw= is_valid_word(word, hand, word_list)
-        if vw==False:
-            print ("You shall not pass!")
+        if word == '.':
+            print "The tally of your struggles here is", score
+            break
+        elif vw==False:
+            print ("You shall not pass! Aw... honestly I have to say I'm disappointed in you. You should know that that isn't a word...")
+
         else:
             gws= get_word_score(word, HAND_SIZE)
-        score = score + gws
-    return score
+            print "You have", gws + score,"points. I'M SO PROUD OF YOU! :D"
+            hand = update_hand(hand, word)
+            score = score + gws
 
 
 
@@ -337,41 +348,44 @@ def play_game(word_list):
     * If the user inputs anything else, ask them again.
     """
     # TO DO...
-
+    # hand = deal_hand(HAND_SIZE)
+    hand = deal_hand(HAND_SIZE)
+    lasthand = hand
+    score = play_hand(hand, word_list)
     x = 0
+
     while x==0:
 
 
-        question=raw_input("please enter n for a new hand, r for your last hand, or enter e to exit the game").lowercase
+        question=raw_input(str("Please enter n to play a new hand, enter r to repeat your last hand, or type e to exit your adventure that you have traveled through so far.")).lower()
 
 
-
-        if question == n:
-            deal_hand(HAND_SIZE)
-            display_hand(hand)
-            x=1
-        # elif question==r:
-        #     hand=last_hand
-        #     x=1
-        elif question==e:
+        if question == 'n':
+            hand = deal_hand(HAND_SIZE)
+            lasthand = hand
+        elif question=='r':
+            # hand=lasthand
+            print "hopefully we just redefined the hand"
+        elif question=='e':
+            print ''
             exit()
-            x=1
         else:
-            x=0
-            print 'Try again'
+            print 'LISTEN! You have to enter an actual command!'
+        score = play_hand(hand, word_list)
 
-    score = play_hand(hand, word_list)
+
+
 
 
 
 # Build data structures used for entire session and play game
 #
-if __name__ == '__main__':
-    word_list = load_words()
-    play_game(word_list)
+# if __name__ == '__main__':
+#     word_list = load_words()
+#     play_game(word_list)
 
 
 
 
-load_words()
-playg = play_game(word_list)
+word_list = load_words()
+play_game(word_list)
