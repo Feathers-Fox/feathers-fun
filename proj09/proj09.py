@@ -1,5 +1,5 @@
 # proj09: Simulating robots
-# Name: ariana and bonnie
+# Name: ariana and bonnie SAVED
 # Date:
 
 import math
@@ -169,6 +169,7 @@ class RectangularRoom(object):
         if pos.getX() < self.width and pos.getY() < self.height:
             print "alsotrue"
             return True
+        raise NotImplementedError
         # """
         # Return True if pos is inside the room.
         #
@@ -202,7 +203,7 @@ class Robot(object):
         self.room = room
         self.speed = speed
         self.position= self.room.getRandomPosition()
-        self.direction = 0.0
+        self.direction = 0
 
         #cleanTileAtPosition(x, y)
 
@@ -229,66 +230,110 @@ class Robot(object):
     def getRobotDirection(self):
         dlist = []
 
-        d = self.direction
+        for degrees in range(0, 361):
+            dlist.append(degrees)
 
+        randomd = random.choice(dlist)
+        #print dlist
+        print "the randomly generated direction/degree is", randomd
+        return randomd
         # """
         # Return the direction of the robot.
         #
         # returns: an integer d giving the direction of the robot as an angle in
         # degrees, 0 <= d < 360.
         # """
-        raise NotImplementedError
-
     def setRobotPosition(self, position):
-        """
-        Set the position of the robot to POSITION.
-
-        position: a Position object.
-        """
-        raise NotImplementedError
-
+        position = wally.getRobotPosition()
+        print "blaaaaaaa", position
+        return position
+        # """
+        # Set the position of the robot to POSITION.
+        #
+        # position: a Position object.
+        # """
     def setRobotDirection(self, direction):
-        """
-        Set the direction of the robot to DIRECTION.
 
-        direction: integer representing an angle in degrees
-        """
-        raise NotImplementedError
+        direction = wally.getRobotDirection()
+        print "glaaaaaaaa", direction
+        return direction
+
+        # """
+        # Set the direction of the robot to DIRECTION.
+        # direction: integer representing an angle in degrees
+        # """
 
     def updatePositionAndClean(self):
-        """
-        Simulate the raise passage of a single time-step.
 
-        Move the robot to a new position and mark the tile it is on as having
-        been cleaned.
-        """
-        raise NotImplementedError
+        raise NotImplmementedError
 
+        # """
+        # Simulate the raise passage of a single time-step.
+        # Move the robot to a new position and mark the tile it is on as having
+        # been cleaned.
+        # """
 
 wally = Robot(room, 1)
-
 print "wally's speed is ", wally.speed
-
-
 print "wally's randomly-generated location is ", wally.getRobotPosition()
-
+print wally.getRobotDirection()
+print wally.setRobotPosition(Position(wally, Position))
+print wally.setRobotDirection(Position(wally, Position))
+#print wally.updatePositionAndClean()
 # === Problem 2
+
 class StandardRobot(Robot):
-    """
-    A StandardRobot is a Robot with the standard movement strategy.
 
-    At each time-step, a StandardRobot attempts to move in its current direction; when
-    it hits a wall, it chooses a new direction randomly.
-    """
+
+    # """
+    # A StandardRobot is a Robot with the standard movement strategy.
+    #
+    # At each time-step, a StandardRobot attempts to move in its current direction; when
+    # it hits a wall, it chooses a new direction randomly.
+    # """
     def updatePositionAndClean(self):
-        """
-        Simulate the passage of a single time-step.
+        # """
+        # Simulate the passage of a single time-step.
+        #
+        # Move the robot to a new position and mark the tile it is on as having
+        # been cleaned.
+       # """
 
-        Move the robot to a new position and mark the tile it is on as having
-        been cleaned.
-        """
+
+
+
+
+        newposition = getNewPosition(self, angle, speed)
+        angle = self.getRobotDirection()
+        self.cleanTileAtPosition(getRobotPosition())
+        newdirection = self.setRobotDirection()
+        currentposition = self.getRobotPosition()
+        newposition = self.setRobotPosition(Position(SirWallace, Position))
+
+        currentposition = newposition in currentdirection
+        for self.x, self.y in currentposition:
+            if self.x > self.width or self.y > self.height:
+                currentdirection = newdirection
+        print "a,fdflsalieuil"
+        return self.cleanedlist
         raise NotImplementedError
 
+        #
+        # """
+        # Computes and returns the new Position after a single clock-tick has
+        # passed, with this object as the current position, and with the
+        # specified angle and speed.
+        #
+        # Does NOT test whether the returned position fits inside the room.
+        #
+        # angle: float representing angle in degrees, 0 <= angle < 360
+        # speed: positive float representing speed
+        #
+        # Returns: a Position object representing the new position.
+        # """
+
+SirWallace = StandardRobot(room, 1)
+print SirWallace.updatePositionAndClean()
 # === Problem 3
 
 def runSimulation(num_robots, speed, width, height, min_coverage, num_trials,
