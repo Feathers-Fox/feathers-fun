@@ -1,5 +1,5 @@
 # proj09: Simulating robots
-# Name:
+# Name: ariana and bonnie
 # Date:
 
 import math
@@ -57,108 +57,186 @@ class RectangularRoom(object):
     particular time, each of these tiles is either clean or dirty.
     """
     def __init__(self, width, height):
-        """
-        Initializes a rectangular room with the specified width and height.
-
-        Initially, no tiles in the room have been cleaned.
-
-        width: an integer > 0
-        height: an integer > 0
-        """
-        raise NotImplementedError
+        self.width = width
+        self.height = height
+        area = width*height
+        dirtylist = []
+        self.cleanedlist = []
+        #
+        # """
+        # Initializes a rectangular room with the specified width and height.
+        #
+        # Initially, no tiles in the room have been cleaned.
+        #
+        # width: an integer > 0
+        # height: an integer > 0
+        # """
     
     def cleanTileAtPosition(self, pos):
-        """
-        Mark the tile under the position POS as cleaned.
+        x = pos.getX()
+        y = pos.getY()
 
-        Assumes that POS represents a valid position inside this room.
+        self.cleanedlist.append((x, y))
+        print "we added a position to the list of clean tiles. It's ", (x, y)
+        print "the list of clean tiles is now: ", self.cleanedlist
 
-        pos: a Position
-        """
-        raise NotImplementedError
+        # """
+        # Mark the tile under the position POS as cleaned.
+        #
+        # Assumes that POS represents a valid position inside this room.
+        #
+        # pos: a Position
+
+        # """
 
     def isTileCleaned(self, m, n):
-        """
-        Return True if the tile (m, n) has been cleaned.
+        self.m = m
+        self.n = n
 
-        Assumes that (m, n) represents a valid tile inside the room.
+        if (m, n) in self.cleanedlist:
+            print "The tile is clean!"
+            print "the list of cleaned tiles after we run isTileCleaned and returning True is ", self.cleanedlist
+            return True
+        else:
+            print "The tile is not clean!"
+            print "the list of cleaned tiles after we run isTileCleaned and returning False is ", self.cleanedlist
+            return False
 
-        m: an integer
-        n: an integer
-        returns: True if (m, n) is cleaned, False otherwise
-        """
-        raise NotImplementedError
+        # """
+        # Return True if the tile (m, n) has been cleaned.
+        #
+        # Assumes that (m, n) represents a valid tile inside the room.
+        #
+        # m: an integer
+        # n: an integer
+        # returns: True if (m, n) is cleaned, False otherwise
+        # """
     
     def getNumTiles(self):
-        """
-        Return the total number of tiles in the room.
+        return int(area)
+        # """
+        # Return the total number of tiles in the room.
+        #
+        # returns: an integer
+        # """
 
-        returns: an integer
-        """
-        raise NotImplementedError
 
     def getNumCleanedTiles(self):
-        """
-        Return the total number of clean tiles in the room.
 
-        returns: an integer
-        """
-        raise NotImplementedError
+        # tilenumber = 0
+        # while len(self.cleanedlist) <= self.width*self.height:
+        #     self.cleanedlist.append(self.number)
+        #     tilenumber = tilenumber + 1
+        #     asdf = int(len(self.cleanedlist - 1))
+        # print asdf
+        # return asdf
+        return len(self.cleanedlist)
+
+        # """
+        # Return the total number of clean tiles in the room.
+        #
+        # returns: an integer
+        # """
+
 
     def getRandomPosition(self):
-        """
-        Return a random position inside the room.
 
-        returns: a Position object.
-        """
-        raise NotImplementedError
+        allnumbersw = []
+        allnumbersh = []
+
+
+        for item in range(0, self.width):
+            allnumbersw.append(item)
+
+        for item2 in range(0, self.height):
+            allnumbersh.append(item2)
+        randomw = random.choice(allnumbersw)
+        randomh = random.choice(allnumbersh)
+        return (randomw, randomh)
+
+
+
+
+
+        # """
+        # Return a random position inside the room.
+        #
+        # returns: a Position object.
+        # """
+
 
     def isPositionInRoom(self, pos):
-        """
-        Return True if pos is inside the room.
+        if pos.getX() < self.width and pos.getY() < self.height:
+            print "alsotrue"
+            return True
+        # """
+        # Return True if pos is inside the room.
+        #
+        # pos: a Position object.
+        # returns: True if pos is in the room, False otherwise.
+        # """
 
-        pos: a Position object.
-        returns: True if pos is in the room, False otherwise.
-        """
-        raise NotImplementedError
+
+room = RectangularRoom(10,10)
+print room.getNumCleanedTiles()
+print room.cleanTileAtPosition(Position(4,5))
+print room.isTileCleaned(4,5)
+print room.getNumCleanedTiles()
+print room.getRandomPosition()
+print room.isPositionInRoom(Position(4, 5))
+
 
 
 class Robot(object):
-    """
-    Represents a robot cleaning a particular room.
 
-    At all times the robot has a particular position and direction in the room.
-    The robot also has a fixed speed.
-
-    Subclasses of Robot should provide movement strategies by implementing
-    updatePositionAndClean(), which simulates a single time-step.
-    """
+    # """
+    # Represents a robot cleaning a particular room.
+    #
+    # At all times the robot has a particular position and direction in the room.
+    # The robot also has a fixed speed.
+    #
+    # Subclasses of Robot should provide movement strategies by implementing
+    # updatePositionAndClean(), which simulates a single time-step.
+    # """
     def __init__(self, room, speed):
-        """
-        Initializes a Robot with the given speed in the specified room. The
-        robot initially has a random direction and a random position in the
-        room. The robot cleans the tile it is on.
+        self.room = room
+        self.speed = speed
+        self.position= self.room.getRandomPosition()
+        self.direction = 0.0
 
-        room:  a RectangularRoom object.
-        speed: a float (speed > 0)
-        """
-        raise NotImplementedError
+        #cleanTileAtPosition(x, y)
+
+        # """
+        # Initializes a Robot with the given speed in the specified room. The
+        # robot initially has a random direction and a random position in the
+        # room. The robot cleans the tile it is on.
+        #
+        # room:  a RectangularRoom object.
+        # speed: a float (speed > 0)
+        # """
+        # raise NotImplementedError
 
     def getRobotPosition(self):
-        """
-        Return the position of the robot.
+        #print "yayiusdfishfsak"
+        return self.position
+        # "
+        # Return the position of the robot.
+        #
+        # returns: a Position object giving the robot's position.
+        # """
 
-        returns: a Position object giving the robot's position.
-        """
-        raise NotImplementedError
-    
+
     def getRobotDirection(self):
-        """
-        Return the direction of the robot.
+        dlist = []
 
-        returns: an integer d giving the direction of the robot as an angle in
-        degrees, 0 <= d < 360.
-        """
+        d = self.direction
+
+        # """
+        # Return the direction of the robot.
+        #
+        # returns: an integer d giving the direction of the robot as an angle in
+        # degrees, 0 <= d < 360.
+        # """
         raise NotImplementedError
 
     def setRobotPosition(self, position):
@@ -186,6 +264,13 @@ class Robot(object):
         """
         raise NotImplementedError
 
+
+wally = Robot(room, 1)
+
+print "wally's speed is ", wally.speed
+
+
+print "wally's randomly-generated location is ", wally.getRobotPosition()
 
 # === Problem 2
 class StandardRobot(Robot):
@@ -229,10 +314,10 @@ def runSimulation(num_robots, speed, width, height, min_coverage, num_trials,
 
 # === Problem 4
 #
-# 1) How long does it take to clean 80% of a 20�20 room with each of 1-10 robots?
+# 1) How long does it take to clean 80% of a 20x20 room with each of 1-10 robots?
 #
 # 2) How long does it take two robots to clean 80% of rooms with dimensions 
-#	 20�20, 25�16, 40�10, 50�8, 80�5, and 100�4?
+#	 20x20, 25x16, 40x10, 50x8, 80x5, and 100x4?
 
 def showPlot1():
     """
